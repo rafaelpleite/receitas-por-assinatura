@@ -132,7 +132,6 @@ export default function ConversationPage() {
                     {message.content}
                   </ReactMarkdown>
                 </div>
-
               </div>
             ))}
           </div>
