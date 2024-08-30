@@ -16,13 +16,13 @@ import { useRouter } from "next/navigation";
 
 const tools = [
   {
-    label: "Conversation",
+    label: "Receitas",
     icon: MessageSquare,
     color: "text-violet-500",
     bgColor: "bg-violet-500/10",
     href: "/conversation"
   },
-  {
+  /*{
     label: "Music Generation",
     icon: Music,
     color: "text-emerald-500",
@@ -49,7 +49,7 @@ const tools = [
     color: "text-green-700",
     bgColor: "bg-green-700/10",
     href: "/code"
-  }
+  }*/
 ];
 
 export default function DashboardPage() {
@@ -59,10 +59,10 @@ export default function DashboardPage() {
     <div>
       <div className="mb-8 space-y-4">
         <h2 className="text-2xl md:text-4xl font-bold text-center">
-          Explore the Power of AI
+          Explore o Receitas por Assinatura
         </h2>
         <p className="text-muted-foreground font-light text-sm md:text-lg text-center">
-          Chat with the Smartest AI - Explore the Power of AI
+        Converse com nossa Chef AI - Descubra o Sabor da Tecnologia
         </p>
       </div>
 

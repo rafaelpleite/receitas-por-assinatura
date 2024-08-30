@@ -30,12 +30,12 @@ import { cn } from "@/lib/utils";
 
 const tools = [
   {
-    label: "Conversation",
+    label: "Receitas",
     icon: MessageSquare,
     color: "text-violet-500",
     bgColor: "bg-violet-500/10"
   },
-  {
+  /*{
     label: "Music Generation",
     icon: Music,
     color: "text-emerald-500",
@@ -58,7 +58,7 @@ const tools = [
     icon: Code,
     color: "text-green-700",
     bgColor: "bg-green-700/10"
-  }
+  }*/
 ];
 
 export default function PorModal() {
@@ -84,7 +84,7 @@ export default function PorModal() {
         <DialogHeader>
           <DialogTitle className="flex justify-center items-center flex-col gap-y-4 pb-2">
             <div className="flex items-center gap-x-2 font-bold py-1">
-              Upgrade to Genius
+              Atualize para Receitas por Assinatura
               <Badge variant="premium" className="uppercase text-sm py-1">
                 pro
               </Badge>
@@ -115,7 +115,7 @@ export default function PorModal() {
             className="w-full"
             disabled={loading}
           >
-            Upgrade
+            Receitas sem limites
             <Zap className="w-4 h-4 ml-2 fill-white" />
           </Button>
         </DialogFooter>

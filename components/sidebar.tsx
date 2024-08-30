@@ -28,12 +28,12 @@ const routes = [
     color: "text-sky-500"
   },
   {
-    label: "Conversation",
+    label: "Receitas",
     icon: MessageSquare,
     href: "/conversation",
     color: "text-violet-500"
   },
-  {
+  /*{
     label: "Image Generation",
     icon: ImageIcon,
     href: "/image",
@@ -56,9 +56,9 @@ const routes = [
     icon: Code,
     href: "/code",
     color: "text-green-700"
-  },
+  },*/
   {
-    label: "Settings",
+    label: "Configurações",
     icon: Settings,
     href: "/settings"
   }
@@ -81,7 +81,7 @@ export default function Sidebar({
             <Image fill alt="LoGo" src="/logo.png" />
           </div>
           <h1 className={cn("text-2xl font-bold", montserrat.className)}>
-            Genius
+          Receitas por Assinatura
           </h1>
         </Link>
         <div className="space-y-1">

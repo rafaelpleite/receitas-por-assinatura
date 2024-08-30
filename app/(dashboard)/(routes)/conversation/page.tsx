@@ -9,6 +9,8 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { ChatCompletionRequestMessage } from "openai";
 import { toast } from "react-hot-toast";
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 import Heading from "@/components/heading";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
@@ -29,6 +31,8 @@ export default function ConversationPage() {
   const router = useRouter();
   const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([]);
 
+  console.log('messages is -> ', messages);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -42,8 +46,9 @@ export default function ConversationPage() {
     try {
       const userMessage: ChatCompletionRequestMessage = {
         role: "user",
-        content: values.prompt
+        content: `Gerar uma receita detalhada para: ${values.prompt}. Por favor, forneça instruções passo a passo adequadas para todos os níveis de habilidade culinária, de iniciantes a avançados. Inclua medidas, técnicas de cozimento e quaisquer dicas especiais que possam ajudar na preparação do prato.`
       };
+      const prompt = values.prompt;
       const newMessages = [...messages, userMessage];
 
       const response = await axios.post("/api/conversation", {
@@ -64,8 +69,8 @@ export default function ConversationPage() {
   return (
     <div>
       <Heading
-        title="Conversation"
-        description="Our Most Advanced Conversation Model"
+        title="Receitas"
+        description="Gere receitas sem limites"
         icon={MessageSquare}
         iconColor="text-violet-500"
         bgColor="bg-violet-500/10"
@@ -84,7 +89,7 @@ export default function ConversationPage() {
                     <FormControl className="m-0 p-0">
                       <Input
                         disabled={isLoading}
-                        placeholder="How do I calculate the radius of a circle?"
+                        placeholder="Como fazer um bolo de fubá?"
                         className="pl-2 border-0 outline-none focus-visible:ring-0 focus-visible: ring-transparent"
                         {...field}
                       />
@@ -96,7 +101,7 @@ export default function ConversationPage() {
                 disabled={isLoading}
                 className="col-span-12 lg:col-span-2 w-full"
               >
-                Generate
+                Enviar
               </Button>
             </form>
           </Form>
@@ -108,7 +113,7 @@ export default function ConversationPage() {
             </div>
           )}
           {messages.length === 0 && !isLoading && (
-            <Empty label="No Conversation Started Yet." />
+            <Empty label="Nenhuma receita ainda." />
           )}
           <div className="flex flex-col-reverse gap-y-4">
             {messages.map((message) => (
@@ -122,7 +127,9 @@ export default function ConversationPage() {
                 )}
               >
                 {message.role === "user" ? <UserAvatar /> : <BotAvatar />}
-                <p className="text-sm">{message.content}</p>
+                <div className="text-sm">
+                  <ReactMarkdown children={message.content} remarkPlugins={[remarkGfm]} />
+                </div>
               </div>
             ))}
           </div>

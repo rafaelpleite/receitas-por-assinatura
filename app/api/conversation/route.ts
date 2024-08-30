@@ -32,7 +32,7 @@ export async function POST(req: Request) {
       return new NextResponse("Free Trial Has Expired", { status: 403 });
 
     const response = await openai.createChatCompletion({
-      model: "gpt-3.5-turbo",
+      model: "gpt-4o-mini",
       messages
     });
 

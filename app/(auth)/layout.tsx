@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Genius | Authentication",
+  title: "Receitas por Assinatura | Authentication",
   description: "AI SaaS Platform.",
 };
 

@@ -7,29 +7,29 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 const testimonials = [
   {
-    name: "Swadesh",
-    avatar: "SN",
-    title: "Software Engineer",
-    description: "This is the best application I've ever used!"
+    name: "Mariana Pereira",
+    avatar: "MP",
+    title: "Nutricionista",
+    description: "Receitas personalizadas que transformam hábitos alimentares. Uma ferramenta incrível!"
   },
   {
-    name: "Saroj",
-    avatar: "SS",
-    title: "Designer",
-    description: "I use this daily for generating new photos!"
+    name: "Carlos Henrique",
+    avatar: "CH",
+    title: "Pai de dois filhos",
+    description: "Receitas rápidas que agradam a família toda. Super prático!"
   },
   {
-    name: "Santosh",
-    avatar: "SD",
-    title: "CEO",
+    name: "Juliana Dias",
+    avatar: "JD",
+    title: "Aventureira Culinária",
     description:
-      "This app has changed my life, cannot imagine working without it!"
+      "Novos sabores toda semana, como ter um chef particular!"
   },
   {
-    name: "Kanha",
-    avatar: "SP",
-    title: "CFO",
-    description: "The best in class, definitely worth the premium subscription!"
+    name: "Ricado Silva",
+    avatar: "RS",
+    title: "Estudante Universitário",
+    description: "Receitas simples e saborosas que mudaram meu dia a dia!"
   }
 ];
 
@@ -37,7 +37,7 @@ export default function LandingContent() {
   return (
     <div className="px-10 pb-20">
       <h2 className="text-center text-4xl text-white font-extrabold mb-10">
-        Testimonials
+        Testemunhos
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {testimonials.map((item) => (

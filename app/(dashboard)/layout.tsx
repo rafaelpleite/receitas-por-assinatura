@@ -6,7 +6,7 @@ import { getApiLimitCount } from "@/lib/api-limit";
 import { checkSubscription } from "@/lib/subscription";
 
 export const metadata: Metadata = {
-  title: "Dashboard | Genius",
+  title: "Dashboard | Receitas por Assinatura",
   description: "AI SaaS Platform."
 };
 

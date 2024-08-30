@@ -33,7 +33,7 @@ export default function SubscriptionButton({
       variant={isPro ? "default" : "premium"}
       onClick={onClick}
     >
-      {isPro ? "Manage Subscription" : "Upgrade"}
+      {isPro ? "Gerenciar inscrição" : "Receitas sem limites"}
       {!isPro && <Zap className="w-4 h-4 ml-2 fill-white" />}
     </Button>
   );
