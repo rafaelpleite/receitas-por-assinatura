@@ -128,8 +128,11 @@ export default function ConversationPage() {
               >
                 {message.role === "user" ? <UserAvatar /> : <BotAvatar />}
                 <div className="text-sm">
-                  <ReactMarkdown children={message.content} remarkPlugins={[remarkGfm]} />
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                    {message.content}
+                  </ReactMarkdown>
                 </div>
+
               </div>
             ))}
           </div>
