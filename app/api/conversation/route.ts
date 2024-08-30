@@ -1,4 +1,4 @@
-import { auth } from "@clerk/nextjs";
+import { auth } from '@clerk/nextjs/server';
 import { NextResponse } from "next/server";
 import { Configuration, OpenAIApi } from "openai";
 
@@ -13,7 +13,7 @@ const openai = new OpenAIApi(configuration);
 
 export async function POST(req: Request) {
   try {
-    const { userId } = auth();
+    const { userId } = await auth();
     const body = await req.json();
     const { messages } = body;
 
@@ -25,7 +25,7 @@ export async function POST(req: Request) {
     if (!messages)
       return new NextResponse("Messages Are Required", { status: 400 });
 
-    const freeTrial = await checkApiLimit();
+    const freeTrial = await checkApiLimit(userId);
     const isPro = await checkSubscription();
 
     if (!freeTrial && !isPro)
@@ -36,7 +36,7 @@ export async function POST(req: Request) {
       messages
     });
 
-    if (!isPro) await increaseApiLimit();
+    if (!isPro) await increaseApiLimit(userId);
 
     return NextResponse.json(response.data.choices[0].message);
   } catch (error) {

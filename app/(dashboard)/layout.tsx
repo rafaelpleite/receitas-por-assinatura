@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 
 import { getApiLimitCount } from "@/lib/api-limit";
 import { checkSubscription } from "@/lib/subscription";
+import { auth } from '@clerk/nextjs/server';
 
 export const metadata: Metadata = {
   title: "Dashboard | Receitas por Assinatura",
@@ -15,7 +16,9 @@ export default async function DashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const apiLimitCount = await getApiLimitCount();
+  const { userId } : { userId: string | null } = auth();
+
+  const apiLimitCount = userId ? await getApiLimitCount(userId) : 0;
   const isPro = await checkSubscription();
 
   return (
