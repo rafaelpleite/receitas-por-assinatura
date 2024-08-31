@@ -25,6 +25,9 @@ export async function POST(req: Request) {
     const body = await req.json();
     const { messages } = body// body.map((item: string) => { return `Gerar uma receita detalhada para: ${item}. Por favor, forneça instruções passo a passo adequadas para todos os níveis de habilidade culinária, de iniciantes a avançados. Inclua medidas, técnicas de cozimento e quaisquer dicas especiais que possam ajudar na preparação do prato.` });;
 
+    // I want to extract the first message.content
+    const prompt = messages[0].content
+
     const promptMessages = messages.map((message: { content: any; }) => ({
       ...message,
       content: `Gerar uma receita detalhada para: ${message.content}. Por favor, forneça instruções passo a passo adequadas para todos os níveis de habilidade culinária, de iniciantes a avançados. Inclua medidas, técnicas de cozimento e quaisquer dicas especiais que possam ajudar na preparação do prato.`
@@ -42,13 +45,14 @@ export async function POST(req: Request) {
       return new NextResponse("Free Trial Has Expired", { status: 403 });
 
     const response = await streamText({
-      model: openai('gpt-4-turbo'),
+      model: openai('gpt-4o-mini'),
       messages: convertToCoreMessages(promptMessages),
     });
 
     if (!isPro) await increaseApiLimit(userId);
 
     return response.toDataStreamResponse();
+
   } catch (error) {
     console.error("[CONVERSATION_ERROR]", error);
     return new NextResponse("Internal Error", { status: 500 });

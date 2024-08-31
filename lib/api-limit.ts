@@ -8,7 +8,7 @@ export const increaseApiLimit = async (userId: string) => {
         return;
     }
 
-    console.log("increaseApiLimit: userId is ->", userId);
+    // console.log("increaseApiLimit: userId is ->", userId);
 
     const userApiLimit = await prismadb.userApiLimit.findUnique({
         where: { userId }
@@ -29,7 +29,7 @@ export const increaseApiLimit = async (userId: string) => {
 
 export const checkApiLimit = async (userId: string) => {
 
-    console.log('checkApiLimit: userId ->', userId);
+    // console.log('checkApiLimit: userId ->', userId);
 
     if (!userId) {
         return false;

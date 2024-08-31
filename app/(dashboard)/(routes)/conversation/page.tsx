@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { MessageSquare } from "lucide-react";
 import { useChat } from 'ai/react';
 import ReactMarkdown from 'react-markdown';
@@ -18,6 +18,63 @@ import { cn } from "@/lib/utils";
 
 export default function ConversationPage() {
   const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat();
+  const [history, setHistory] = useState([]);
+  const [previousMessageCount, setPreviousMessageCount] = useState(0);
+
+  useEffect(() => {
+    // Fetch conversation history on component mount
+    const fetchHistory = async () => {
+      try {
+        const response = await fetch('/api/history', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          const formattedHistory = data.map(entry => [
+            { role: 'user', content: entry.prompt },
+            { role: 'assistant', content: entry.response }
+          ]).flat(); // Flatten the array to get a list of messages
+          setHistory(formattedHistory);
+        } else {
+          console.error('Failed to fetch conversation history');
+        }
+      } catch (error) {
+        console.error('Error fetching conversation history:', error);
+      }
+    };
+
+    fetchHistory();
+  }, []);
+
+  useEffect(() => {
+    // Check if loading has just finished
+    if (!isLoading && messages.length > previousMessageCount) {
+      const lastUserMessage = messages
+        .filter(msg => msg.role === "user")
+        .slice(-1)[0]?.content || "";
+      const lastAssistantMessage = messages
+        .filter(msg => msg.role === "assistant")
+        .slice(-1)[0]?.content || "";
+
+      if (lastUserMessage && lastAssistantMessage) {
+        fetch('/api/writehistory', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ prompt: lastUserMessage, response: lastAssistantMessage }),
+        }).catch(error => console.error('Error saving conversation:', error));
+      }
+
+      setPreviousMessageCount(messages.length); // Update the message count
+    }
+  }, [isLoading, messages]);
+
+  const allMessages = [...history, ...messages];
 
   return (
     <div>
@@ -46,9 +103,9 @@ export default function ConversationPage() {
         </form>
         <div className="space-y-4 mt-4">
           {isLoading && <Loader />}
-          {!messages.length && !isLoading && <Empty label="Nenhuma receita ainda." />}
+          {!allMessages.length && !isLoading && <Empty label="Nenhuma receita ainda." />}
           <div className="flex flex-col-reverse gap-y-4">
-            {messages.map((message, index) => (
+            {allMessages.map((message, index) => (
               <div
                 key={index}
                 className={cn(

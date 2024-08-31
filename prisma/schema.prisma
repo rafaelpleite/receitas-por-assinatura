@@ -25,10 +25,10 @@ model UserSubscription {
   stripeCurrentPeriodEnd DateTime? @map(name: "stripe_current_period_end")
 }
 
-model Receipes {
+model ConversationHistory {
   id          String   @id @default(cuid())
   prompt      String
-  reponse     String
+  response    String
   userId      String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
