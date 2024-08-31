@@ -26,6 +26,9 @@ import { useProModal } from "@/hooks/use-pro-modal";
 
 import { formSchema } from "./constants";
 
+// import { openai } from '@ai-sdk/openai';
+// import { streamText } from 'ai';
+
 export default function ConversationPage() {
   const proModal = useProModal();
   const router = useRouter();
