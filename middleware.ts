@@ -3,7 +3,7 @@ import {
   createRouteMatcher
 } from '@clerk/nextjs/server';
 
-const isPublicRoute = createRouteMatcher(['/dashboard(.*)', '/raio-x-votos(.*)', '/settings(.*)', '/settings(.*)', '/candidato(.*)']);
+const isPublicRoute = createRouteMatcher(['/dashboard(.*)', '/conversation(.*)', '/settings(.*)']);
 
 export default clerkMiddleware((auth, req) => {
   if (isPublicRoute(req)) auth().protect();
