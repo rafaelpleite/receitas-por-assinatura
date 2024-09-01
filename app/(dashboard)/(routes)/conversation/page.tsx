@@ -34,7 +34,7 @@ export default function ConversationPage() {
 
         if (response.ok) {
           const data = await response.json();
-          const formattedHistory = data.map(entry => [
+          const formattedHistory = data.map((entry: { prompt: any; response: any; }) => [
             { role: 'user', content: entry.prompt },
             { role: 'assistant', content: entry.response }
           ]).flat(); // Flatten the array to get a list of messages
