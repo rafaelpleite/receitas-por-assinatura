@@ -45,9 +45,9 @@ export async function GET() {
             currency: "BRL",
             product_data: {
               name: "Receitas por Assinatura Pro",
-              description: "Unlimited AI Generations."
+              description: "Receitas sem limite."
             },
-            unit_amount: 2990,
+            unit_amount: 990,
             recurring: {
               interval: "month"
             }
