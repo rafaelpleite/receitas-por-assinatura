@@ -11,14 +11,6 @@ import { streamText, convertToCoreMessages } from 'ai';
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
 
-/* 
-const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY
-});
-*/
-
-// const openai = new OpenAIApi(configuration);
-
 export async function POST(req: Request) {
   try {
     const { userId } = await auth();
