@@ -8,6 +8,8 @@ import ModalProvider from "@/components/modal-provider";
 import ToasterProvider from "@/components/toaster-provider";
 import CrispProvider from "@/components/crisp-provider";
 
+import { ptBR } from '@clerk/localizations'
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -21,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ClerkProvider>
+    <ClerkProvider localization={ptBR}>
       <html lang="en">
         <head>
           <link rel="icon" href="/favicon.ico" />

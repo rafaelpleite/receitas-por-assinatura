@@ -170,6 +170,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@clerk/localizations@npm:^3.9.2":
+  version: 3.9.2
+  resolution: "@clerk/localizations@npm:3.9.2"
+  dependencies:
+    "@clerk/types": ^4.39.4
+  checksum: 237ccfb783a2ff4cbc0060c5590a5653982c8d6900f1e7395588cec252a20f1ddfb9d8e945a019b41d98148b1dfea9a787a7ba754dbfe15fbebb85d7dfb2e009
+  languageName: node
+  linkType: hard
+
 "@clerk/nextjs@npm:^5.1.6":
   version: 5.3.7
   resolution: "@clerk/nextjs@npm:5.3.7"
@@ -217,6 +226,15 @@ __metadata:
   dependencies:
     csstype: 3.1.1
   checksum: c86cf1926c6d5ca86469bce2d8b696bc0840c82ac6a48a1118db44ee4e5f2f24fcd73b7ba217ac74fa82775a2509bb710cc3500987ed18e0afeb0439ebdc9e51
+  languageName: node
+  linkType: hard
+
+"@clerk/types@npm:^4.39.4":
+  version: 4.39.4
+  resolution: "@clerk/types@npm:4.39.4"
+  dependencies:
+    csstype: 3.1.1
+  checksum: 04d0bdee18f271f313854de03aa05a019ffd7b594adea76fe9d1fcbf3cc78f456f6191d51ee2bb221a3a010388476faba98bfa48f501b6a3b3ddc53f578986e6
   languageName: node
   linkType: hard
 
@@ -1638,6 +1656,7 @@ __metadata:
   resolution: "ai-saas@workspace:."
   dependencies:
     "@ai-sdk/openai": ^0.0.54
+    "@clerk/localizations": ^3.9.2
     "@clerk/nextjs": ^5.1.6
     "@hookform/resolvers": ^3.1.1
     "@prisma/client": ^5.16.1

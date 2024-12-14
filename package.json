@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@ai-sdk/openai": "^0.0.54",
+    "@clerk/localizations": "^3.9.2",
     "@clerk/nextjs": "^5.1.6",
     "@hookform/resolvers": "^3.1.1",
     "@prisma/client": "^5.16.1",
