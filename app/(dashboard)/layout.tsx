@@ -7,8 +7,8 @@ import { checkSubscription } from "@/lib/subscription";
 import { auth } from '@clerk/nextjs/server';
 
 export const metadata: Metadata = {
-  title: "Dashboard | Receitas por Assinatura",
-  description: "AI SaaS Platform."
+  title: "Dashboard | Chefely",
+  description: "Receitas, dicas e truques para você se tornar um chef em casa."
 };
 
 export default async function DashboardLayout({

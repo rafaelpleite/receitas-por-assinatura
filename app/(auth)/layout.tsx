@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Receitas por Assinatura | Authentication",
-  description: "AI SaaS Platform.",
+  title: "Chefely - Inspirando Sabores",
+  description: "Receitas, dicas e truques para você se tornar um chef em casa.",
 };
 
 export default function AuthLayout({

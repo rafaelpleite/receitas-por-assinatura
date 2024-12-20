@@ -37,7 +37,7 @@ export default function PorModal() {
   const proModal = useProModal();
   const [loading, setLoading] = useState<boolean>(false);
 
-  const onSubscribe = async () => {
+  const onSubscribeCC = async () => {
     try {
       setLoading(true);
       const response = await axios.get("/api/stripe");
@@ -50,13 +50,41 @@ export default function PorModal() {
     }
   };
 
+  const onSubscribePIX = async () => {
+    try {
+      setLoading(true);
+  
+      // Fetch payment link
+      const response = await axios.get("/api/mercadopago");
+      console.log("Passed here response", response);
+  
+      const ticketUrl = response.data.point_of_interaction.transaction_data.ticket_url;
+  
+      console.log("Ticket URL:", ticketUrl);
+  
+      // Open in new tab
+      const newWindow = window.open(ticketUrl, "_blank");
+  
+      // Fallback for browsers that block `window.open`
+      if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
+        alert("Habilite popup para este site.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      toast.error("Something went wrong.");
+    } finally {
+      setLoading(false);
+    }
+  };
+  
+
   return (
     <Dialog open={proModal.isOpen} onOpenChange={proModal.onClose}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle className="flex justify-center items-center flex-col gap-y-4 pb-2">
             <div className="flex items-center gap-x-2 font-bold py-1">
-              Atualize para Receitas por Assinatura
+              Atualize para Chefely
               <Badge variant="premium" className="uppercase text-sm py-1">
                 pro
               </Badge>
@@ -81,16 +109,29 @@ export default function PorModal() {
         </DialogHeader>
         <DialogFooter>
           <Button
-            onClick={onSubscribe}
+            onClick={onSubscribeCC}
             size="lg"
             variant="premium"
             className="w-full"
             disabled={loading}
           >
-            Receitas sem limites
+            Pagar com Cartão de Crédito
             <Zap className="w-4 h-4 ml-2 fill-white" />
           </Button>
         </DialogFooter>
+        <DialogFooter>
+          <Button
+            onClick={onSubscribePIX}
+            size="lg"
+            variant="premium"
+            className="w-full"
+            disabled={loading}
+          >
+            Pagar com PIX
+            <Zap className="w-4 h-4 ml-2 fill-white" />
+          </Button>
+        </DialogFooter>
+        
       </DialogContent>
     </Dialog>
   );

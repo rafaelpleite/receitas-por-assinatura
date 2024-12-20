@@ -44,7 +44,7 @@ export async function GET() {
           price_data: {
             currency: "BRL",
             product_data: {
-              name: "Receitas por Assinatura Pro",
+              name: "Chefely Pro",
               description: "Receitas sem limite."
             },
             unit_amount: 990,

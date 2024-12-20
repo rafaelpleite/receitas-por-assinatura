@@ -13,8 +13,8 @@ import { ptBR } from '@clerk/localizations'
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Receitas por Assinatura",
-  description: "AI SaaS Platform."
+  title: "Chefely - Inspirando Sabores",
+  description: "Receitas, dicas e truques para você se tornar um chef em casa.",
 };
 
 export default function RootLayout({
