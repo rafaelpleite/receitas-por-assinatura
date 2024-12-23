@@ -23,7 +23,7 @@ export async function generate(input: string) {
 
     // Validation and Logging
     if (!apiKey) {
-        console.error('OPENAI_API_KEY is not defined.');
+        console.error('OPENAI_API_KEY is not defined. Could no find OPENAI_API_SK in process.env');
         return { status: 500, message: 'Internal Server Error' };
     }
 
